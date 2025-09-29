@@ -1,0 +1,63 @@
+﻿@page "/products"
+@rendermode InteractiveServer
+@using WebClient.Services
+@using WebClient.DTOs
+@inject IProductApiService ProductService
+
+<h3>Products</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (products == null)
+        {
+            <tr><td colspan="5">Loading...</td></tr>
+        }
+        else if (!products.Any())
+        {
+            <tr><td colspan="5">No products found.</td></tr>
+        }
+        else
+        {
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.Stock</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Product> products = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await ProductService.GetAllProductsAsync();
+            if (response.IsSuccessStatusCode && response.Content != null)
+            {
+                products = await response.Content.ReadFromJsonAsync<List<Product>>() ?? new();
+                Console.WriteLine($"Fetched {products.Count} products.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error fetching products: {ex.Message}");
+        }
+    }
+}

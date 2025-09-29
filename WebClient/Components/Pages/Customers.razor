@@ -1,0 +1,57 @@
+﻿@page "/customers"
+@using System.Collections.Generic
+@using WebClient.DTOs
+@using WebClient.Services
+@inject ICustomerApiService CustomerService
+
+<h3>Customers</h3>
+
+@if (customers == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Date of Registration</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in customers)
+            {
+                <tr>
+                    <td>@customer.Id</td>
+                    <td>@customer.Name</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.DateOfRegistration.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Customer> customers;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var response = await CustomerService.GetAllCustomersAsync();
+
+        if (response.IsSuccessStatusCode && response.Content != null)
+        {
+            customers = await response.Content.ReadFromJsonAsync<List<Customer>>();
+            Console.WriteLine($"Fetched {customers.Count} customers.");
+        }
+        else
+        {
+            Console.Error.WriteLine("Failed to fetch customers.");
+            customers = new List<Customer>();
+        }
+    }
+}

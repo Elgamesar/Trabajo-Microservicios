@@ -1,0 +1,67 @@
+﻿@page "/"
+@using WebClient.DTOs
+@using WebClient.Data
+@using WebClient.Services
+@rendermode InteractiveServer
+@inject ICustomerApiService CustomerService
+@inject IProductApiService ProductService
+@inject DataGeneratorProduct DataGeneratorProduct
+@inject DataGeneratorCustomer DataGeneratorCustomer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<div class="mt-4">
+    <button class="btn btn-primary me-2" @onclick="InsertSampleCustomers">
+        Insert Sample Customers
+    </button>
+    
+    <button class="btn btn-success" @onclick="InsertSampleProducts">
+        Insert Sample Products
+    </button>
+</div>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-dismissible fade show mt-3" role="alert">
+        @message
+    </div>
+}
+
+@code {
+    private string? message;
+
+    private async Task InsertSampleCustomers()
+    {
+        // TODO: Add actual implementation to insert sample customers
+
+        CreateCustomerDto customer = DataGeneratorCustomer.GenerateCustomer();
+
+        var response = await CustomerService.CreateCustomerAsync(customer);
+
+        if (response.IsSuccessStatusCode)
+        {
+            message = "Sample customer has been inserted!";
+        }
+        else
+        {
+            message = "Failed to insert sample customers.";
+        }
+
+    }
+
+    private async Task InsertSampleProducts()
+    {
+       CreateProductDto product = DataGeneratorProduct.GenerateProduct();
+        var response = await ProductService.CreateProductAsync(product);
+        if (response.IsSuccessStatusCode)
+        {
+            message = "Sample product has been inserted!";
+        }
+        else
+        {
+            message = "Failed to insert sample products.";
+        }
+    }
+}

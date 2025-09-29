@@ -1,0 +1,97 @@
+﻿@page "/orders-history"
+@using WebClient.DTOs
+@using WebClient.Services
+@rendermode InteractiveServer
+@inject IOrderApiService OrderApiService
+
+@if (isLoading)
+{
+    <div class="d-flex justify-content-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else
+{
+    <div class="orders-accordion">
+        <h1>Orders History</h1>
+        @foreach (var order in orders)
+        {
+            <div class="card mb-2">
+                <div class="card-header d-flex justify-content-between align-items-center" @onclick="() => ToggleOrder(order.Id)">
+                    <div class="d-flex gap-4">
+                        <span><strong>Order #@order.Id</strong></span>
+                        <span>@order.OrderDate.ToShortDateString()</span>
+                        <span>Customer ID: @order.CustomerId - @order.CustomerName</span>
+                        <span>Total: @order.TotalAmount.ToString("C")</span>
+                    </div>
+                    <i class="oi @(expandedOrderId == order.Id ? "oi-chevron-top" : "oi-chevron-bottom")"></i>
+                </div>
+                @if (expandedOrderId == order.Id)
+                {
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in order.Items)
+                                {
+                                    <tr>
+                                        <td>@item.ProductName</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.UnitPrice.ToString("C")</td>
+                                        <td>@((item.Quantity * item.UnitPrice).ToString("C"))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .orders-accordion .card-header {
+        cursor: pointer;
+        background-color: #f8f9fa;
+    }
+    .orders-accordion .card-header:hover {
+        background-color: #e9ecef;
+    }
+</style>
+
+@code {
+    private List<OrderListDto> orders = new List<OrderListDto>();
+    private int? expandedOrderId;
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await OrderApiService.GetAllOrdersAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                orders = await response.Content.ReadFromJsonAsync<List<OrderListDto>>() ?? new List<OrderListDto>();
+            }
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void ToggleOrder(int orderId)
+    {
+        expandedOrderId = expandedOrderId == orderId ? null : orderId;
+    }
+}
